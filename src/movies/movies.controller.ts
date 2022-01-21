@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, Req, Res } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
+import { UpdateMovieDto } from './dto/update-movie.dto';
 import { Movie } from './entities/movie.entity';
 import { MoviesService } from './movies.service';
 
@@ -30,7 +31,7 @@ constructor(private readonly moviesService: MoviesService) {}
   }
 
   @Patch('/:id')
-  path(@Param('id') movieId: number, @Body() updateData){
+  path(@Param('id') movieId: number, @Body() updateData: UpdateMovieDto){
     return this.moviesService.update(movieId, updateData)
   }
 
